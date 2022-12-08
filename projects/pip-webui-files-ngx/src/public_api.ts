@@ -1,5 +1,5 @@
 /*
- * Public API Surface of pip-webui2-files
+ * Public API Surface of pip-webui-files-ngx
  */
 
 export * from './lib/shared/index';

@@ -10,13 +10,8 @@ describe('UploadFilesExampleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FlexLayoutModule,
-
-        UploadFilesExampleModule
-      ]
-    })
-      .compileComponents();
+      imports: [FlexLayoutModule, UploadFilesExampleModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

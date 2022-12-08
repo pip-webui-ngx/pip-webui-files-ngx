@@ -12,7 +12,7 @@ Pip.WebUI.Files module provides controls to select files on local disk and uploa
 **Using**
 
 ```typescript
-import { PipFileUploadService } from 'pip-webui2-files';
+import { PipFileUploadService } from 'pip-webui-files-ngx';
 
 fileUploadService.uploadFiles(url, fileCollection, headers).subscribe(result => {
     // Results are here...
@@ -25,7 +25,7 @@ fileUploadService.uploadFiles(url, fileCollection, headers).subscribe(result => 
 To install this module using npm:
 
 ```bash
-npm install pip-webui2-files --save
+npm install pip-webui-files-ngx --save
 ```
 
 ## <a name="license"></a>License

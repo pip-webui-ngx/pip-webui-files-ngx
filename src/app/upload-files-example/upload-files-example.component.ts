@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
-import { PipFileUploadService } from 'pip-webui2-files';
+import { PipFileUploadService } from 'pip-webui-files-ngx';
 
 @Component({
   selector: 'app-upload-files-example',
   templateUrl: './upload-files-example.component.html',
-  styleUrls: ['./upload-files-example.component.scss']
+  styleUrls: ['./upload-files-example.component.scss'],
 })
 export class UploadFilesExampleComponent implements OnInit {
   private files: any[] = [];
   private url = 'http://tracker.pipservices.net:8080/api/v1/blobs';
   private headers: any = {
-    'x-session-id': '7501b38b1cea42f2b0d34d282b701e5c'
+    'x-session-id': '7501b38b1cea42f2b0d34d282b701e5c',
   };
   private blobId = 'a0573d87408c4e6ebb93ff75569a821b';
 
-  constructor(
-    public media: MediaObserver,
-    public fileUploadService: PipFileUploadService
-  ) { }
+  constructor(public media: MediaObserver, public fileUploadService: PipFileUploadService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   changeFile(e) {
     this.files = [];
@@ -28,18 +25,21 @@ export class UploadFilesExampleComponent implements OnInit {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      if (!file) { return; }
+      if (!file) {
+        return;
+      }
 
       const reader = new FileReader();
 
       reader.onloadend = (result: any) => {
         this.files.push({
-          file: this.dataURItoBlob(
-            result.target.result), fileName: file.name
-        }
-        );
+          file: this.dataURItoBlob(result.target.result),
+          fileName: file.name,
+        });
 
-        if (files.length - 1 === i) { this.uploadFiles(); }
+        if (files.length - 1 === i) {
+          this.uploadFiles();
+        }
       };
       reader.readAsDataURL(file);
     }
@@ -65,10 +65,10 @@ export class UploadFilesExampleComponent implements OnInit {
   }
 
   private uploadFiles() {
-    this.fileUploadService.uploadFiles(this.url /* + '/' + this.blobId*/, this.files, this.headers).subscribe(
-      (result: any) => {
+    this.fileUploadService
+      .uploadFiles(this.url /* + '/' + this.blobId*/, this.files, this.headers)
+      .subscribe((result: any) => {
         console.log('res', result);
-      }
-    );
+      });
   }
 }

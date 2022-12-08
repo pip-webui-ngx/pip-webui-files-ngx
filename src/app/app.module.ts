@@ -1,31 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule, BREAKPOINTS, DEFAULT_BREAKPOINTS } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TranslateModule } from '@ngx-translate/core';
-import { PipThemesModule } from 'pip-webui2-themes';
-
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PipThemesModule, pipWebUI2ThemesList, mstThemes } from 'pip-webui-themes-ngx';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { ExamplesListModule } from './examples-list/examples-list.module';
 import { UploadFilesExampleModule } from './upload-files-example/upload-files-example.module';
-
-export const CustomBreakPointsProvider = {
-  provide: BREAKPOINTS,
-  useValue: [...DEFAULT_BREAKPOINTS],
-  multi: true
-};
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,15 +28,15 @@ export const CustomBreakPointsProvider = {
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    TranslateModule.forRoot(),
-
-    PipThemesModule.forRoot(),
-
+    PipThemesModule.forRoot({
+      themes: [...pipWebUI2ThemesList, mstThemes['Elegant']],
+    }),
     AppRoutingModule,
     ExamplesListModule,
-    UploadFilesExampleModule
+    UploadFilesExampleModule,
+    HttpClientModule,
+    TranslocoRootModule,
   ],
-  providers: [CustomBreakPointsProvider],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
